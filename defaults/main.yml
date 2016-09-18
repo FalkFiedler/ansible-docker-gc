@@ -1,0 +1,9 @@
+---
+# Git SHA of the repo that we need to get
+docker_gc_version: 4ee60137cfc76cf568b47f9b459b851d59325311
+docker_gc_sha256: 82a65bfaa7282beb3e94d51e6a71ec88d3ada564d0857cc1c5397ea5da958d65
+docker_gc_exclude_images: []
+docker_gc_exclude_containers: []
+docker_gc_force_image_removal: 0
+docker_gc_force_container_removal: 0
+docker_gc_grace_period_seconds: 3600

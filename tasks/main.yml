@@ -1,0 +1,27 @@
+---
+- name: Download the docker-gc shell script
+  sudo: yes
+  get_url:
+    url: "https://raw.githubusercontent.com/spotify/docker-gc/{{docker_gc_version}}/docker-gc"
+    dest: /sbin/docker-gc
+    mode: 0755
+    sha256sum: "{{docker_gc_sha256}}"
+
+- name: Generate exclude images list
+  sudo: yes
+  copy:
+    dest: /etc/docker-gc-exclude
+    content: "{{ docker_gc_exclude_images | join('\n') }}"
+
+- name: Generate exclude container list
+  sudo: yes
+  copy:
+    dest: /etc/docker-gc-exclude-containers
+    content: "{{ docker_gc_exclude_containers | join('\n') }}"
+
+- name: Setup cron for docker-gc
+  sudo: yes
+  cron:
+    minute: "0"
+    hour: "1"
+    job: "FORCE_IMAGE_REMOVAL={{docker_gc_force_image_removal}} FORCE_CONTAINER_REMOVAL={{docker_gc_force_container_removal}} GRACE_PERIOD_SECONDS={{docker_gc_grace_period_seconds}} /sbin/docker-gc"
