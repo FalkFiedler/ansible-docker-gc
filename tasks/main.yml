@@ -22,6 +22,7 @@
 - name: Setup cron for docker-gc
   sudo: yes
   cron:
-    minute: "0"
-    hour: "1"
-    job: "FORCE_IMAGE_REMOVAL={{docker_gc_force_image_removal}} FORCE_CONTAINER_REMOVAL={{docker_gc_force_container_removal}} GRACE_PERIOD_SECONDS={{docker_gc_grace_period_seconds}} /sbin/docker-gc"
+    name: "hourly docker-gc"
+    special_time: "hourly"
+    job: "FORCE_IMAGE_REMOVAL={{docker_gc_force_image_removal}} FORCE_CONTAINER_REMOVAL={{docker_gc_force_container_removal}} GRACE_PERIOD_SECONDS={{docker_gc_grace_period_seconds}} /sbin/docker-gc > /dev/null"
+    state: "present"
