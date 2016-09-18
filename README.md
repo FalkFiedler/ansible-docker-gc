@@ -5,8 +5,9 @@
 This role installs and configures the [docker-gc](https://github.com/spotify/docker-gc) on a linux server
 
 ```
-- role: ansible-docker-gc
-  sudo: yes
+roles:
+  - role: ansible-docker-gc
+    sudo: yes
 ```
 
 ## Variables
