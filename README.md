@@ -8,3 +8,9 @@ This role installs and configures the [docker-gc](https://github.com/spotify/doc
 - role: ansible-docker-gc
   sudo: yes
 ```
+
+## Variables
+Please refer to [defaults/main.yml](https://github.com/ashwanthkumar/ansible-docker-gc/blob/master/defaults/main.yml) for details.
+
+## License
+Apache 2.0 - http://www.apache.org/licenses/LICENSE-2.0
